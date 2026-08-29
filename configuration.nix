@@ -81,6 +81,26 @@
     };
   };
 
+  # ---------- ssh ----------
+  services.openssh = {
+    enable = true;                      # opens port 22 in the firewall automatically
+    settings = {
+      PasswordAuthentication = false;   # key-only; the key is declared on the user below
+      PermitRootLogin = "no";
+    };
+  };
+
+  # mDNS, so this box is reachable as `nixos.local` without chasing DHCP leases
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    publish = {
+      enable = true;
+      addresses = true;
+      workstation = true;
+    };
+  };
+
   # ---------- misc services ----------
   services.printing.enable = true;
   services.flatpak.enable = true;                # you have com.cdnex.ejx
@@ -92,6 +112,10 @@
     description = "Ivan";
     extraGroups = [ "wheel" "networkmanager" "video" "audio" ];
     shell = pkgs.bash;
+    openssh.authorizedKeys.keys = [
+      # ubuntu-desktop (192.168.0.107)
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIECbpIHIwBlUH93dvm+O/IZbUSASdwffhtQum58VWuKS yuri@ubuntu-desktop"
+    ];
   };
 
   nixpkgs.config.allowUnfree = true;             # google-chrome
