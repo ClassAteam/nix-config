@@ -87,8 +87,26 @@
     # google-chrome moved to home.nix (programs.google-chrome, with extensions)
   ];
 
-  # Vulkan/OpenGL runtime for graphics work
-  hardware.graphics.enable = true;
+  # ---------- graphics: NVIDIA GeForce RTX 4060 (AD107, Ada Lovelace) ----------
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;          # Steam, wine, some Vulkan samples
+  };
+
+  services.xserver.videoDrivers = [ "nvidia" ];
+
+  hardware.nvidia = {
+    modesetting.enable = true;   # required for Wayland/GNOME
+    nvidiaSettings = true;
+
+    # Ada is Turing-or-newer, so the open kernel modules are the right choice.
+    # This option has no default - leaving it unset produces a build warning.
+    open = true;
+
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
+
+    powerManagement.enable = false;   # desktop; enable only if you suspend a lot
+  };
 
   programs.wireshark.enable = true;              # sets up the wireshark group
 
