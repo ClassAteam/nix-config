@@ -10,6 +10,7 @@
   # Tools that belong to you, not to the machine or to one project.
   home.packages = with pkgs; [
     claude-code        # `claude` - unfree, allowUnfree is set in configuration.nix
+    nerd-fonts.jetbrains-mono  # glyphs for yazi/zellij icons - alacritty.toml points at this family
   ];
 
   # ---------- browser ----------
