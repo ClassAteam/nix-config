@@ -1,0 +1,17 @@
+[window]
+startup_mode = "Fullscreen"
+
+# [keyboard]
+# bindings = [{ key = "F11", action = "ToggleFullscreen" }]
+
+[font]
+size = 20
+
+[terminal.shell]
+program = "zellij"
+args = ["-l", "welcome"]
+
+# [colors]
+# [colors.primary]
+# background = "#ffffff"  # Pure white background
+# foreground = "#000000"  # Black text for contrast

@@ -1,0 +1,39 @@
+[[language]]
+name = "rust"
+
+[language-server.rust-analyzer]
+command = "rust-analyzer"
+
+[language-server.rust-analyzer.config]
+cargo.features = "all"
+
+[[language]]
+name = "c"
+language-servers = ["clangd"]
+auto-format = true
+
+[[language]]
+name = "cpp"
+language-servers = ["clangd"]
+auto-format = true
+
+[language-server.clangd]
+command = "clangd"
+args = [
+    "--background-index",
+    "--clang-tidy", 
+    "--completion-style=detailed",
+    "--function-arg-placeholders",
+    "--header-insertion=iwyu",
+    "--pch-storage=memory",
+    "--cross-file-rename",
+    "--log=verbose"
+]
+
+[[language]]
+name = "markdown"
+language-servers = ["marksman"]
+
+[language-server.marksman]
+command = "marksman"
+args = ["server"]

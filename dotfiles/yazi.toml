@@ -1,0 +1,4 @@
+[manager]
+ratio = [1, 1, 6]
+show_hidden = true
+sort_by = "alphabetical"

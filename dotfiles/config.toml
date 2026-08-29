@@ -1,0 +1,27 @@
+theme ="catppuccin_macchiato"
+
+[keys.normal]
+down = "scroll_down"
+up = "scroll_up"
+# C-e = "scroll_down"
+# C-r = "scroll_up"
+[keys.normal.space]
+L = [":toggle soft-wrap.enable", ":redraw"]
+F = "file_picker_in_current_buffer_directory"
+
+# [editor.smart-tab]
+# enable = true
+
+
+[editor.statusline]
+left = ["mode", "spinner", "position"]
+center = ["file-name"]
+# center = ["file-base-name"]
+right = ["file-modification-indicator", "total-line-numbers", "file-encoding", "diagnostics", "file-type"]
+separator = "│"
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "SELECT"
+
+# [editor.whitespace]
+# render = "all"
