@@ -94,5 +94,5 @@
 
   # Never change this after install - it is not a "latest version" knob.
   # Set it to the NixOS release you first installed.
-  system.stateVersion = "25.05";
+  system.stateVersion = "26.05";
 }

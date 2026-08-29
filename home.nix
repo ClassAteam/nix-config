@@ -89,5 +89,5 @@
     nix-direnv.enable = true;       # auto-enter per-project devShells
   };
 
-  home.stateVersion = "25.05";
+  home.stateVersion = "26.05";
 }

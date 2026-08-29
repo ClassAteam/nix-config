@@ -22,7 +22,7 @@ ordinary .toml/.kdl files. Edit, rebuild, done - no translation into Nix syntax.
 
     # 2. home-manager channel (release MUST match the NixOS release)
     sudo nix-channel --add \
-      https://github.com/nix-community/home-manager/archive/release-25.05.tar.gz home-manager
+      https://github.com/nix-community/home-manager/archive/release-26.05.tar.gz home-manager
     sudo nix-channel --update
 
     # 3. point NixOS at this repo
