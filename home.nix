@@ -13,17 +13,12 @@
   ];
 
   # ---------- browser ----------
-  programs.google-chrome = {
-    enable = true;
-    # Extensions are installed by ID from the Chrome Web Store.
-    # Chrome's own bundled components (Translate, Docs Offline, Web Store
-    # Payments) ship with the browser - no need to list them.
-    extensions = [
-      { id = "eimadpbcbfnmbkopoojfekhnkhdbieeh"; }  # Dark Reader
-      { id = "fcoeoabgfenejglbffodgkkbkcdhcgfn"; }  # Claude
-      { id = "mgijmajocgfcbeboacabfgobmjgjcoja"; }  # Google Dictionary
-    ];
-  };
+  # NOTE: home-manager refuses `extensions` for google-chrome on Linux - Chrome
+  # only loads external extensions from system-managed dirs it does not control.
+  # Your extensions (Dark Reader, Claude, Google Dictionary) come back via
+  # Chrome Sync on first sign-in. Switch to programs.chromium if you ever want
+  # them declared here instead.
+  programs.google-chrome.enable = true;
 
   # ---------- dotfiles: linked verbatim from ./dotfiles ----------
   # No translation into Nix syntax - your existing files stay authoritative.
