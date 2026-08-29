@@ -80,6 +80,9 @@
       name  = "Ivan";
       email = "royal_88@mail.ru";
     };
+    # git config is read-only (managed by home-manager), so `gh auth login`
+    # can't write the credential helper itself - declare it here instead.
+    settings.credential.helper = "!${pkgs.gh}/bin/gh auth git-credential";
   };
 
   programs.direnv = {
