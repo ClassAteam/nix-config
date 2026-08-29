@@ -2,3 +2,8 @@
 hardware-configuration.nix
 result
 result-*
+
+# adguardvpn-cli stores account credentials and session state here.
+# Never commit it - this repo is public.
+.local/
+adguardvpn-cli/

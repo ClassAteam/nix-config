@@ -81,6 +81,9 @@
     # rust  - see note below, prefer devShells per project
     rustup
 
+    # vpn - packaged locally, not in nixpkgs (see pkgs/adguardvpn-cli.nix)
+    (callPackage ./pkgs/adguardvpn-cli.nix { })
+
     # other
     python3 wireshark marksman
     firefox thunderbird foliate
