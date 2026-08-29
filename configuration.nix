@@ -68,10 +68,9 @@
         path = "/home/yuridesktop/repo/books";
         devices = [ "ubuntu-desktop" ];
 
-        # Start one-way: Ubuntu is the source of truth, this machine only
-        # receives. Nothing you do here can delete a book on Ubuntu.
-        # Change to "sendreceive" once you trust it.
-        type = "receiveonly";
+        # Two-way: books added or removed on either machine propagate to the
+        # other. Deletions are recoverable from .stversions below.
+        type = "sendreceive";
 
         versioning = {
           type = "simple";
