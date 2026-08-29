@@ -1,10 +1,16 @@
 # home-manager module: your dotfiles + user-level environment.
-# Config files are referenced from ../configs, so this repo stays the
+# Config files are referenced from ./dotfiles, so this repo stays the
 # single source of truth - edit the .toml files as normal, rebuild, done.
 { config, pkgs, ... }:
 {
   home.username = "yuri";
   home.homeDirectory = "/home/yuri";
+
+  # ---------- user packages ----------
+  # Tools that belong to you, not to the machine or to one project.
+  home.packages = with pkgs; [
+    claude-code        # `claude` - unfree, allowUnfree is set in configuration.nix
+  ];
 
   # ---------- dotfiles: linked verbatim from ../configs ----------
   # No translation into Nix syntax - your existing files stay authoritative.
@@ -35,6 +41,9 @@
 
     sessionVariables = {
       EDITOR = "hx";
+      # /nix/store is read-only, so Claude Code cannot update itself in place.
+      # Updates arrive via nix-channel --update + nixos-rebuild instead.
+      DISABLE_AUTOUPDATER = "1";
       # HELIX_RUNTIME deliberately NOT set - see note in the answer.
     };
 
