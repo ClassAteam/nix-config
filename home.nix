@@ -12,7 +12,20 @@
     claude-code        # `claude` - unfree, allowUnfree is set in configuration.nix
   ];
 
-  # ---------- dotfiles: linked verbatim from ../configs ----------
+  # ---------- browser ----------
+  programs.google-chrome = {
+    enable = true;
+    # Extensions are installed by ID from the Chrome Web Store.
+    # Chrome's own bundled components (Translate, Docs Offline, Web Store
+    # Payments) ship with the browser - no need to list them.
+    extensions = [
+      { id = "eimadpbcbfnmbkopoojfekhnkhdbieeh"; }  # Dark Reader
+      { id = "fcoeoabgfenejglbffodgkkbkcdhcgfn"; }  # Claude
+      { id = "mgijmajocgfcbeboacabfgobmjgjcoja"; }  # Google Dictionary
+    ];
+  };
+
+  # ---------- dotfiles: linked verbatim from ./dotfiles ----------
   # No translation into Nix syntax - your existing files stay authoritative.
   home.file.".config/helix/config.toml".source       = ./dotfiles/config.toml;
   home.file.".config/helix/languages.toml".source    = ./dotfiles/languages.toml;

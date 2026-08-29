@@ -83,7 +83,8 @@
 
     # other
     python3 wireshark marksman
-    firefox google-chrome thunderbird foliate
+    firefox thunderbird foliate
+    # google-chrome moved to home.nix (programs.google-chrome, with extensions)
   ];
 
   # Vulkan/OpenGL runtime for graphics work
