@@ -78,6 +78,21 @@
           params.keep = "5";      # deleted/changed files kept in .stversions
         };
       };
+
+      # Notes are edited on both machines, so this one is two-way.
+      # NOTE: this includes .git. Syncthing and git coexist fine as long as you
+      # don't run git operations on both machines at the same time - let a sync
+      # settle before switching machines. GitHub remains the real backup.
+      folders.mynotes = {
+        path = "/home/yuridesktop/repo/mynotes";
+        devices = [ "ubuntu-desktop" ];
+        type = "sendreceive";
+
+        versioning = {
+          type = "simple";
+          params.keep = "10";     # notes are small; keep more history
+        };
+      };
     };
   };
 
