@@ -3,8 +3,8 @@
 # single source of truth - edit the .toml files as normal, rebuild, done.
 { config, pkgs, ... }:
 {
-  home.username = "yuri";
-  home.homeDirectory = "/home/yuri";
+  home.username = "yuridesktop";
+  home.homeDirectory = "/home/yuridesktop";
 
   # ---------- user packages ----------
   # Tools that belong to you, not to the machine or to one project.

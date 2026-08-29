@@ -11,14 +11,14 @@
 
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
-  home-manager.users.yuri = import ./home.nix;
+  home-manager.users.yuridesktop = import ./home.nix;
 
   # ---------- boot ----------
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
   # ---------- host / network ----------
-  networking.hostName = "yuri-laptop";          # pick a name per machine
+  networking.hostName = "nixos";               # as set by the installer
   networking.networkmanager.enable = true;
 
   # ---------- locale (mirrors your en_US + ru_RU split) ----------
@@ -50,7 +50,7 @@
   programs.gnupg.agent.enable = true;
 
   # ---------- user ----------
-  users.users.yuri = {
+  users.users.yuridesktop = {
     isNormalUser = true;
     description = "Ivan";
     extraGroups = [ "wheel" "networkmanager" "video" "audio" ];
