@@ -14,7 +14,8 @@ ordinary .toml/.kdl files. Edit, rebuild, done - no translation into Nix syntax.
 
 ## Deploying to a fresh NixOS machine
 
-    git clone <this repo> ~/repo/nix-config
+    # a fresh NixOS install has no git yet - borrow one for the clone
+    nix-shell -p git --run 'git clone https://github.com/ClassAteam/nix-config ~/repo/nix-config'
     cd ~/repo/nix-config
 
     # 1. hardware-configuration.nix is generated per machine - keep the local one
