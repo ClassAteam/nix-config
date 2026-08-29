@@ -66,7 +66,7 @@
 
     # cli tools  (was: apt)
     ripgrep fd jq tree xclip p7zip graphviz imagemagick
-    poppler_utils ffmpeg ffmpegthumbnailer git gh
+    poppler-utils ffmpeg ffmpegthumbnailer git gh
 
     # C/C++ toolchain  (was: build-essential, gcc-12, clangd-15, bear)
     gcc cmake pkg-config gnumake

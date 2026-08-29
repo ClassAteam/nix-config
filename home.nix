@@ -75,8 +75,10 @@
 
   programs.git = {
     enable = true;
-    userName  = "Ivan";
-    userEmail = "royal_88@mail.ru";
+    settings.user = {
+      name  = "Ivan";
+      email = "royal_88@mail.ru";
+    };
   };
 
   programs.direnv = {
