@@ -44,6 +44,43 @@
     pulse.enable = true;
   };
 
+  # ---------- file sync ----------
+  # Replicates ~/repo/books with the Ubuntu desktop. Both machines keep a
+  # full, ordinary copy - nothing is mounted or symlinked.
+  services.syncthing = {
+    enable = true;
+    user = "yuridesktop";
+    group = "users";
+    dataDir = "/home/yuridesktop";
+    configDir = "/home/yuridesktop/.config/syncthing";
+    openDefaultPorts = true;      # 22000 tcp/udp sync, 21027/udp LAN discovery
+
+    # Make this file authoritative: devices/folders removed here are removed
+    # from Syncthing too, instead of lingering from the web UI.
+    overrideDevices = true;
+    overrideFolders = true;
+
+    settings = {
+      devices.ubuntu-desktop.id =
+        "MLXERZC-QQLMTE3-BQXGHG6-24XAAZR-B7UKLP7-ON2RMM5-NQBDWRS-CJCT6QP";
+
+      folders.books = {
+        path = "/home/yuridesktop/repo/books";
+        devices = [ "ubuntu-desktop" ];
+
+        # Start one-way: Ubuntu is the source of truth, this machine only
+        # receives. Nothing you do here can delete a book on Ubuntu.
+        # Change to "sendreceive" once you trust it.
+        type = "receiveonly";
+
+        versioning = {
+          type = "simple";
+          params.keep = "5";      # deleted/changed files kept in .stversions
+        };
+      };
+    };
+  };
+
   # ---------- misc services ----------
   services.printing.enable = true;
   services.flatpak.enable = true;                # you have com.cdnex.ejx
