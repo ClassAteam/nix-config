@@ -63,10 +63,12 @@
     settings = {
       devices.ubuntu-desktop.id =
         "MLXERZC-QQLMTE3-BQXGHG6-24XAAZR-B7UKLP7-ON2RMM5-NQBDWRS-CJCT6QP";
+      devices.android-phone.id =
+        "LNAQK4W-6RPYI7O-5WY4TGR-O4TAX3M-LILCZ2E-A5O3R3S-3QFH2DW-QA44HQH";
 
       folders.books = {
         path = "/home/yuridesktop/repo/books";
-        devices = [ "ubuntu-desktop" ];
+        devices = [ "ubuntu-desktop" "android-phone" ];
 
         # Two-way: books added or removed on either machine propagate to the
         # other. Deletions are recoverable from .stversions below.
@@ -84,7 +86,7 @@
       # settle before switching machines. GitHub remains the real backup.
       folders.mynotes = {
         path = "/home/yuridesktop/repo/mynotes";
-        devices = [ "ubuntu-desktop" ];
+        devices = [ "ubuntu-desktop" "android-phone" ];
         type = "sendreceive";
 
         versioning = {
@@ -93,6 +95,16 @@
         };
       };
     };
+  };
+
+  # ---------- KDE Connect (via GSConnect, since this is GNOME not Plasma) ----------
+  # Opens firewall ports 1714-1764 tcp/udp automatically and installs the
+  # GNOME Shell extension. Still needs enabling once in the Extensions app
+  # (or via `gnome-extensions enable gsconnect@andyholmes.github.io`) after
+  # rebuild, then pair from the phone's KDE Connect app over the same LAN.
+  programs.kdeconnect = {
+    enable = true;
+    package = pkgs.gnomeExtensions.gsconnect;
   };
 
   # ---------- ssh ----------
@@ -161,7 +173,7 @@
 
     # other
     python3 wireshark marksman
-    firefox thunderbird foliate
+    firefox thunderbird foliate telegram-desktop
     # google-chrome moved to home.nix (programs.google-chrome, with extensions)
   ];
 
