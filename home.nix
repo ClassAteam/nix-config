@@ -28,6 +28,7 @@
   home.file.".config/alacritty/alacritty.toml".source = ./dotfiles/alacritty.toml;
   home.file.".config/zellij/config.kdl".source       = ./dotfiles/config.kdl;
   home.file.".config/yazi/yazi.toml".source          = ./dotfiles/yazi.toml;
+  home.file.".config/yazi/keymap.toml".source        = ./dotfiles/keymap.toml;
   home.file.".gdbinit".source                        = ./dotfiles/gdb/gdbinit;
 
   # ---------- bash ----------

@@ -115,14 +115,14 @@ keybinds clear-defaults=true {
         bind "Ctrl y" { SwitchToMode "normal"; }
     }
     shared_except "locked" {
-        // bind "F1" { NextSwapLayout; }
+        bind "Alt ]" { NextSwapLayout; }
         bind "F1" { NewTab; SwitchToMode "normal"; }
-        bind "F8" { MoveTab "left"; }
-        bind "F9" { MoveTab "right"; }
+        bind "F2" { MoveTab "left"; }
+        bind "F3" { MoveTab "right"; }
         bind "Alt +" { Resize "Increase"; }
         bind "Alt -" { Resize "Decrease"; }
         bind "Alt =" { Resize "Increase"; }
-        bind "F11" { PreviousSwapLayout; }
+        bind "Alt [" { PreviousSwapLayout; }
         bind "Alt f" { ToggleFloatingPanes; }
         bind "Ctrl g" { SwitchToMode "locked"; }
         bind "Alt h" { MoveFocus "left"; }
@@ -134,11 +134,11 @@ keybinds clear-defaults=true {
         bind "Alt 2" { GoToTab 2; SwitchToMode "normal"; }
         bind "Alt 3" { GoToTab 3; SwitchToMode "normal"; }
         bind "Alt 4" { GoToTab 4; SwitchToMode "normal"; }
-        bind "Alt 5" { GoToTab 5; SwitchToMode "normal"; }
-        bind "Alt 6" { GoToTab 6; SwitchToMode "normal"; }
-        bind "Alt 7" { GoToTab 7; SwitchToMode "normal"; }
-        bind "Alt 8" { GoToTab 8; SwitchToMode "normal"; }
-        bind "Alt 9" { GoToTab 9; SwitchToMode "normal"; }
+        // bind "Alt 5" { GoToTab 5; SwitchToMode "normal"; }
+        // bind "Alt 6" { GoToTab 6; SwitchToMode "normal"; }
+        // bind "Alt 7" { GoToTab 7; SwitchToMode "normal"; }
+        // bind "Alt 8" { GoToTab 8; SwitchToMode "normal"; }
+        // bind "Alt 9" { GoToTab 9; SwitchToMode "normal"; }
     }
     shared_except "locked" "move" {
         bind "Ctrl h" { SwitchToMode "move"; }
@@ -147,8 +147,8 @@ keybinds clear-defaults=true {
         bind "Ctrl y" { SwitchToMode "session"; }
     }
     shared_except "locked" "scroll" {
-        bind "F7" { MoveFocusOrTab "left"; }
-        bind "F10" { MoveFocusOrTab "right"; }
+        bind "F2" { MoveFocusOrTab "left"; }
+        bind "F3" { MoveFocusOrTab "right"; }
     }
     shared_except "locked" "scroll" "search" "tmux" {
         bind "Ctrl b" { SwitchToMode "tmux"; }
