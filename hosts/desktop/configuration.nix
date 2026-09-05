@@ -1,17 +1,12 @@
 # Generated from the Ubuntu 22.04 machine, 2026-08-29.
-# On a fresh NixOS install: keep the installer's hardware-configuration.nix,
-# drop this file in as /etc/nixos/configuration.nix, then:
-#   sudo nixos-rebuild switch
+# Deployed via the repo's flake.nix (nixosConfigurations.desktop), which also
+# wires up home-manager and imports ../../home.nix - see ../../flake.nix and
+# ../../README.md for the deploy commands.
 { config, pkgs, ... }:
 {
   imports = [
     ./hardware-configuration.nix              # generated per machine - never copy this one
-    <home-manager/nixos>                      # see setup note below
   ];
-
-  home-manager.useGlobalPkgs = true;
-  home-manager.useUserPackages = true;
-  home-manager.users.yuridesktop = import ./home.nix;
 
   # ---------- boot ----------
   boot.loader.systemd-boot.enable = true;
@@ -168,8 +163,8 @@
     # rust  - see note below, prefer devShells per project
     rustup
 
-    # vpn - packaged locally, not in nixpkgs (see pkgs/adguardvpn-cli.nix)
-    (callPackage ./pkgs/adguardvpn-cli.nix { })
+    # vpn - packaged locally, not in nixpkgs (see ../../pkgs/adguardvpn-cli.nix)
+    (callPackage ../../pkgs/adguardvpn-cli.nix { })
 
     # other
     python3 wireshark marksman

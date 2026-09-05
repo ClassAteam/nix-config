@@ -1,5 +1,10 @@
-# generated per machine - do not commit
-hardware-configuration.nix
+# hardware-configuration.nix used to be gitignored ("generated per machine,
+# never commit"), back when this repo held one machine at repo root - the
+# risk was copy-pasting one machine's file onto another by accident. Now
+# each host has its own hardware-configuration.nix in its own hosts/<name>/
+# directory, so that risk is gone, and flakes need every file they touch to
+# be git-tracked anyway (`nix eval`/`nixos-rebuild --flake` both fail on
+# gitignored files). So: commit them, per host.
 result
 result-*
 
