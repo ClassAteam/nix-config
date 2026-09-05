@@ -122,6 +122,37 @@
     };
   };
 
+  # ---------- reverse SSH tunnel to vps-relay ----------
+  # Holds port 2222 on the VPS open, forwarding back to this machine's :22 -
+  # this is what makes the desktop reachable from mobile networks, via the
+  # VPS, when direct/WireGuard connectivity is unreliable. See
+  # mynotes/vps-relay-reference/ for the whole picture.
+  #
+  # Plain ssh + systemd Restart=always, not autossh - ServerAliveInterval
+  # plus ExitOnForwardFailure already gets ssh to notice a dead connection
+  # and exit, and systemd restarts it; autossh would just be a second layer
+  # doing the same job.
+  systemd.services.vps-relay-tunnel = {
+    description = "Reverse SSH tunnel to vps-relay (VPS:2222 -> this machine:22)";
+    after = [ "network-online.target" ];
+    wants = [ "network-online.target" ];
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      User = "yuridesktop";
+      ExecStart = ''
+        ${pkgs.openssh}/bin/ssh -N -T \
+          -o ExitOnForwardFailure=yes \
+          -o ServerAliveInterval=30 \
+          -o ServerAliveCountMax=3 \
+          -o StrictHostKeyChecking=yes \
+          -R 0.0.0.0:2222:localhost:22 \
+          tunnel@79.132.143.145
+      '';
+      Restart = "always";
+      RestartSec = 5;
+    };
+  };
+
   # ---------- misc services ----------
   services.printing.enable = true;
   services.flatpak.enable = true;                # you have com.cdnex.ejx

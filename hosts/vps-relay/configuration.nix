@@ -56,6 +56,13 @@
     settings = {
       PasswordAuthentication = false;
       PermitRootLogin = "prohibit-password";   # key-only, no root password login
+
+      # Reverse-tunnel ports (-R) bind to localhost on the server by default,
+      # which would make them unreachable from the internet - the whole point
+      # here. "clientspecified" means: reachable publicly only if the client
+      # asks for that explicitly (-R 0.0.0.0:<port>:...), not by default for
+      # every forward - a bit safer than a blanket "yes".
+      GatewayPorts = "clientspecified";
     };
   };
 
@@ -67,7 +74,25 @@
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIECbpIHIwBlUH93dvm+O/IZbUSASdwffhtQum58VWuKS yuri@ubuntu-desktop"
   ];
 
-  networking.firewall.allowedTCPPorts = [ 22 ];
+  # Dedicated, unprivileged account for the reverse tunnels - deliberately not
+  # root. The unattended, always-on tunnel processes on the desktop/laptop
+  # only need to hold open a forwarded port, never a shell here; nologin is
+  # fine since ssh -N never requests a pty/session in the first place.
+  users.users.tunnel = {
+    isSystemUser = true;
+    group = "tunnel";
+    shell = "${pkgs.shadow}/bin/nologin";
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOGVxSVVSTPgXZjoUUukEmeGfyAdhQPmTms3VA1S2wm+ yuri@nixos-to-laptop"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIECbpIHIwBlUH93dvm+O/IZbUSASdwffhtQum58VWuKS yuri@ubuntu-desktop"
+    ];
+  };
+  users.groups.tunnel = {};
+
+  # 22: normal SSH. 2222/2223: reverse-tunnel endpoints for the desktop and
+  # laptop respectively - this is what a phone on mobile data actually SSHes
+  # into, and the VPS relays it back to whichever machine's tunnel is up.
+  networking.firewall.allowedTCPPorts = [ 22 2222 2223 ];
 
   environment.systemPackages = with pkgs; [
     tmux
