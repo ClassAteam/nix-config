@@ -60,10 +60,11 @@
   };
 
   # Root logs in directly here (no separate user - this box does one job).
-  # Same key already used for desktop -> laptop; see
+  # Both keys already used for desktop <-> laptop; see
   # mynotes/ssh-desktop-to-laptop-session/01-walkthrough.md.
   users.users.root.openssh.authorizedKeys.keys = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOGVxSVVSTPgXZjoUUukEmeGfyAdhQPmTms3VA1S2wm+ yuri@nixos-to-laptop"
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIECbpIHIwBlUH93dvm+O/IZbUSASdwffhtQum58VWuKS yuri@ubuntu-desktop"
   ];
 
   networking.firewall.allowedTCPPorts = [ 22 ];
