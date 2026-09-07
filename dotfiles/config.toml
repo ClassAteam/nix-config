@@ -1,27 +1,31 @@
-theme ="catppuccin_macchiato"
+# theme = 'kanagawa-dragon'
+# theme = "catppuccin_macchiato"
+theme = "github_dark_dimmed"
 
-[keys.normal]
-down = "scroll_down"
-up = "scroll_up"
-# C-e = "scroll_down"
-# C-r = "scroll_up"
-[keys.normal.space]
-L = [":toggle soft-wrap.enable", ":redraw"]
-F = "file_picker_in_current_buffer_directory"
-
-# [editor.smart-tab]
-# enable = true
-
+[editor.soft-wrap]
+enable = true
 
 [editor.statusline]
-left = ["mode", "spinner", "position"]
-center = ["file-name"]
-# center = ["file-base-name"]
-right = ["file-modification-indicator", "total-line-numbers", "file-encoding", "diagnostics", "file-type"]
+left = ["mode", "spinner", "file-name", "read-only-indicator", "file-modification-indicator"]
+center = []
+right = ["diagnostics", "selections", "register", "position", "total-line-numbers", "file-encoding"]
 separator = "│"
 mode.normal = "NORMAL"
 mode.insert = "INSERT"
 mode.select = "SELECT"
 
+# [editor.smart-tab]
+# enable = true
+
 # [editor.whitespace]
 # render = "all"
+
+[keys.normal]
+# C-e = "scroll_down"
+down = "scroll_down"
+# C-r = "scroll_up"
+up = "scroll_up"
+
+[keys.normal.space]
+L = [":toggle soft-wrap.enable", ":redraw"]
+F = "file_picker_in_current_buffer_directory"

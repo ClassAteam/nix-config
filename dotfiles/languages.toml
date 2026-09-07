@@ -9,19 +9,26 @@ cargo.features = "all"
 
 [[language]]
 name = "c"
-language-servers = ["clangd"]
 auto-format = true
+formatter = { command = "clang-format", args = ["--style=file"] }
+language-servers = ["clangd"]
 
 [[language]]
 name = "cpp"
-language-servers = ["clangd"]
 auto-format = true
+formatter = { command = "clang-format", args = ["--style=file"] }
+language-servers = ["clangd"]
 
+# NOTE: the laptop pins clangd-15 and passes
+#   --query-driver=/opt/**/bin/*-linux-gnu-*,/usr/bin/*-linux-gnu-*
+# so clangd can interrogate cross compilers for their real system include
+# paths. Neither applies here: NixOS ships plain `clangd`, and there is no
+# /opt cross toolchain on this machine. Re-add --query-driver if one lands.
 [language-server.clangd]
 command = "clangd"
 args = [
     "--background-index",
-    "--clang-tidy", 
+    "--clang-tidy",
     "--completion-style=detailed",
     "--function-arg-placeholders",
     "--header-insertion=iwyu",
