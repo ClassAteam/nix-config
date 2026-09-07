@@ -89,6 +89,19 @@
           params.keep = "10";     # notes are small; keep more history
         };
       };
+
+      # General drop-off point for moving files between all three devices.
+      # Two-way like the folders above.
+      folders.exchange = {
+        path = "/home/yuridesktop/repo/exchange";
+        devices = [ "ubuntu-desktop" "android-phone" ];
+        type = "sendreceive";
+
+        versioning = {
+          type = "simple";
+          params.keep = "5";      # deleted/changed files kept in .stversions
+        };
+      };
     };
   };
 
